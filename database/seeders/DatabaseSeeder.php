@@ -41,10 +41,10 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('olivka2021ooo'),
         ]);
      Category::insert([
-        'category_name' => 'Цветы'
+        'category_name' => 'Суши'
      ]);
      Category::insert([
-        'category_name' => 'Дополнительно'
+        'category_name' => 'Роллы'
      ]);
         Product::insert([
             'product_name' => 'Унаги',
@@ -175,10 +175,10 @@ class DatabaseSeeder extends Seeder
             'product_description' => 'копчёный лосось, соус "филадельфия", рис для суси, огурец, васаб',
         ]);
      Status::insert([
-        'status_name' => 'Новый'
+        'status_name' => 'Принят и передан на кухню'
      ]);
      Status::insert([
-        'status_name' => 'Подтверждён'
+        'status_name' => 'Передан курьеру'
      ]);
      Status::insert([
         'status_name' => 'Отменён'

@@ -11,10 +11,10 @@
                     <select name="status_id" class="form-select">
                         <option value="">Все заказы</option>
                         <option value="1" {{request('status_id')==1 ? 'selected' : ''}}>Новые заказы</option>
-                        <option value="2" {{request('status_id')==2 ? 'selected' : ''}}>Подтверждённые заказы</option>
+                        <option value="2" {{request('status_id')==2 ? 'selected' : ''}}>Переданные курьеру</option>
                         <option value="3" {{request('status_id')==3 ? 'selected' : ''}}>Отменённые заказы</option>
                     </select>
-                    <button class="btn btn-primary" type="submit">Фильтровать</button>
+                    <button class="btn btn-danger" type="submit">Фильтровать</button>
                 </form>
 
                 @if(session()->has('success'))
@@ -30,9 +30,9 @@
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse{{$order->id}}" aria-expanded="true"
                                         aria-controls="collapseOne">
-                                    {{ $order->created_at }} - {{ $order->user->name }} {{ $order->user->patronymic }}
+                                    {{ $order->created_at }} -  {{ $order->user_id }}
 
-                                </button>
+                                </button>{{ $order->user->name }}
                             </h2>
                             <div id="collapse{{$order->id}}" class="accordion-collapse collapse show"
                                  data-bs-parent="#accordionExample">

@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col">
+            <div class="col-8">
                 <h2 class="text-center">Заказы</h2>
                 <div class="accordion" id="accordionExample">
                     @foreach($orders as $order)
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-lg-danger" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse{{$order->id}}" aria-expanded="true"
                                         aria-controls="collapseOne">
                                     Заказ №{{$order->id}} (Статус: {{$order->status()}})
@@ -28,25 +28,34 @@
                                     <table class="table mb-3">
                                         <thread class="text-center">
                                             <tr>
-                                                <th>Количество</th>
                                                 <th>Статус</th>
-                                                <th>Блюдо</th>
-                                                <th>Назввание</th>
-                                                <th>Цена</th>
                                             </tr>
                                         </thread>
                                         <tbody class="text-center">
                                         <tr>
-                                            <td>{{ $order->order_count }}</td>
                                             <td>{{ $order->status() }}</td>
-                                            @foreach($basketItems as $basketItem)
-                                                <td><img src="{{  asset('storage/app/public/'. $basketItem->product_photo)}}" alt=""></td>
-                                                <td> {{ $basketItem->product_name }}</td>
-                                                <td> {{ $basketItem->product_price }}</td>
-                                            @endforeach
                                         </tr>
                                         </tbody>
                                     </table>
+                                        <table class="table mb-3">
+                                            <thread class="text-center">
+                                                <tr>
+                                                    <th>Блюдо</th>
+                                                    <th>Назввание</th>
+                                                    <th>Цена</th>
+                                                </tr>
+                                            </thread>
+                                            @foreach($basketItems as $basketItem)
+                                            <tbody class="text-center">
+                                            <tr>
+                                                <td><img src="{{  asset('storage/app/public/'. $basketItem->product_photo)}}" alt=""></td>
+                                                <td> {{ $basketItem->product_name }}</td>
+                                                <td> {{ $basketItem->product_price }}</td>
+                                                <td>{{ $basketItem->count }}</td>
+                                            </tr>
+                                            </tbody>
+                                            @endforeach
+                                        </table>
                                     @if($order->status_id == 1)
                                         <form action="{{ route('order.remove', $order) }}" method="post">
                                             @csrf
